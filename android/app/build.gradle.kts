@@ -3,11 +3,8 @@ import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
-    // START: FlutterFire Configuration
     id("com.google.gms.google-services")
-    // END: FlutterFire Configuration
     kotlin("android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
@@ -18,14 +15,12 @@ if (localPropertiesFile.exists()) {
     localProperties.load(FileInputStream(localPropertiesFile))
 }
 
-
-
-val flutterVersionCode = localProperties.getProperty("flutter.versionCode")
-val flutterVersionName = localProperties.getProperty("flutter.versionName")
+val flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "1"
+val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
 
 android {
     namespace = "com.example.final_clean_app"
-    compileSdk = 34 // Using a stable SDK version is often more reliable than flutter.compileSdkVersion
+    compileSdk = 36 // CHANGED FROM 34 to 36
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -36,16 +31,23 @@ android {
         jvmTarget = "1.8"
     }
 
+    sourceSets {
+        getByName("main") {
+            java.srcDirs("src/main/kotlin")
+        }
+    }
+
     defaultConfig {
         applicationId = "com.example.final_clean_app"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 36 // CHANGED FROM 34 to 36
         versionCode = flutterVersionCode.toInt()
         versionName = flutterVersionName
     }
 
     buildTypes {
         release {
+            isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -55,8 +57,8 @@ flutter {
     source = "../.."
 }
 
-// THIS IS THE CRITICAL SECTION THAT WAS MISSING
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-analytics")
 }
