@@ -63,8 +63,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.android.play:core:2.0.0") {
-        // This prevents duplicate classes with what Flutter already has
-        exclude group: 'com.google.android.play', module: 'core-common'
+        exclude(group = "com.google.android.play", module = "core-common")
     }
     
     // Add this if you're using Kotlin
