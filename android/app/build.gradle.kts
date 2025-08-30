@@ -18,7 +18,7 @@ val flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "
 val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
 
 android {
-    namespace = "com.example.final_clean_app"
+    namespace = "com.example.whatsapp_sender"
     compileSdk = 36
 
     compileOptions {

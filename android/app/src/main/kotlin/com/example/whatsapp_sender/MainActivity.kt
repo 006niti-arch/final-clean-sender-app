@@ -1,4 +1,4 @@
-package com.example.final_clean_app
+package com.example.whatsapp_sender
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 
