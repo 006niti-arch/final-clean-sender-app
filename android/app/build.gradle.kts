@@ -8,7 +8,6 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Read the flutter SDK properties from local.properties
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
@@ -20,7 +19,7 @@ val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "
 
 android {
     namespace = "com.example.final_clean_app"
-    compileSdk = 36 // CHANGED FROM 34 to 36
+    compileSdk = 36
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -40,19 +39,20 @@ android {
     defaultConfig {
         applicationId = "com.example.final_clean_app"
         minSdk = 21
-        targetSdk = 36 // CHANGED FROM 34 to 36
+        targetSdk = 36
         versionCode = flutterVersionCode.toInt()
         versionName = flutterVersionName
     }
 
     buildTypes {
-    release {
-        isMinifyEnabled = true
-        signingConfig = signingConfigs.getByName("debug")
-        proguardFiles(
-            getDefaultProguardFile("proguard-android-optimize.txt"),
-            "proguard-rules.pro"
-        )
+        release {
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("debug")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
     }
 }
 
@@ -64,8 +64,5 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
-   
-    
-    // Add this if you're using Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
 }
