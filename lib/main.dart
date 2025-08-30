@@ -1,58 +1,33 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:final_clean_app/firebase_options.dart';
-import 'package:final_clean_app/l10n/app_localizations_manual.dart';
-import 'package:final_clean_app/providers/campaign_provider.dart';
-import 'package:final_clean_app/providers/locale_provider.dart';
-import 'package:final_clean_app/screens/auth_gate.dart';
-import 'package:final_clean_app/theme/app_theme.dart';
 
-void main() async {
+void main() {
+  // Mobile-specific initialization
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const MyApp());
+  print('Mobile app starting...'); // Check logs for this
+  
+  runApp(MobileTestApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class MobileTestApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => CampaignProvider()),
-        ChangeNotifierProvider(create: (context) => LocaleProvider()),
-      ],
-      child: const AppContent(),
-    );
-  }
-}
-
-class AppContent extends StatelessWidget {
-  const AppContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final localeProvider = Provider.of<LocaleProvider>(context);
-
     return MaterialApp(
-      title: 'WA Sender Pro',
-      theme: AppTheme.darkTheme,
-      debugShowCheckedModeBanner: false,
-      locale: localeProvider.locale,
-      localizationsDelegates: const [
-        AppLocalizationsManual.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: L10n.all,
-      home: const AuthGate(),
+      home: Scaffold(
+        backgroundColor: Colors.green, // Easy to see
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.phone_android, size: 50, color: Colors.white),
+              SizedBox(height: 20),
+              Text(
+                'MOBILE APP WORKS!',
+                style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
