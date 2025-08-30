@@ -62,9 +62,9 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.android.play:core:2.0.0") {
-        exclude(group = "com.google.android.play", module = "core-common")
-    }
+    implementation("com.google.android.play:core:1.10.3") {
+    exclude(group = "com.google.android.play", module = "core-common")
+}
     
     // Add this if you're using Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
