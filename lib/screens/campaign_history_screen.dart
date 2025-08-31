@@ -9,6 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:final_clean_app/screens/edit_campaign_screen.dart';
+// Add these imports for mobile file handling:
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+import 'package:share_plus/share_plus.dart';
 
 class CampaignHistoryScreen extends StatefulWidget {
   const CampaignHistoryScreen({super.key});
